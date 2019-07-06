@@ -1,0 +1,73 @@
+{
+	"dataset": {
+		"name": "DB1",
+		"train_generator": {
+			"repetitions": [1, 3, 4, 8, 9, 10],
+			"batch_size":256,
+			"sample_weight": true,
+			"dim": [15,10,3],
+			"window_size": 15,
+			"window_step": 5,
+			"snr_db":[25,26],
+			"size_factor":8,
+			"time_warping":0.2,
+			"rotation":2,
+			"shuffle": true
+		},
+		"valid_generator": {
+			"repetitions": [2,5,6],
+			"batch_size": 1,
+			"sample_weight": false,
+			"dim": [15,10,3],
+			"window_size": 15,
+			"window_step": 15,
+			"shuffle": false,
+			"update_after_epoch": false
+		
+		},
+		"test_generator": {
+			"repetitions": [7],
+			"batch_size": 1,
+			"sample_weight": false,
+			"dim": [15,10,3],
+			"window_size": 15,
+			"window_step": 15,
+			"partb_zero":false,
+			"zero_column":0,
+			"partb_noise":true,
+			"noise_column":0,
+			"shuffle": false,
+			"update_after_epoch": false
+		}
+	},
+	
+
+	"model": {
+		"name": "Inceptionv3_NinaPro",
+		"save": true,
+		"save_file": "DB1_inceptionv3_b2",
+		"extra": {
+			"dropout_rate": 0.6,
+			"dense1":512,
+			"dense2":256,
+			"dense3":128,
+			"dense4":128,
+			"batch_norm": true
+		}
+	},
+
+	"training": {
+		"optimizer": "SGD",
+		"fine_tuning_epochs":12,
+		"fine_tuning_lrate":0.0005,
+		"training_epochs":25,
+		"training_lrate":0.01
+	},
+
+	"logging": {
+		"enable": true,
+		"log_file": "DB1_inceptionv3_b2"
+	}
+
+	
+}

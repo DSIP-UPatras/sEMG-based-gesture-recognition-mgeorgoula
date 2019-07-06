@@ -1,0 +1,68 @@
+{
+	"dataset": {
+		"name": "DB5",
+		"train_generator": {
+			"repetitions": [1,2, 4, 6],
+			"batch_size": 1024,
+			"sample_weight": true,
+			"dim": [52,16,3],
+			"window_size": 52,
+			"window_step": 8,
+			"snr_db":[25,26],
+			"rotation":2,			
+			"shuffle": true
+		},
+		"valid_generator": {
+			"repetitions": [2,5],
+			"batch_size": 1,
+			"sample_weight": false,
+			"dim": [52,16,3],
+			"window_size": 52,
+			"window_step": 52,
+			"shuffle": false,
+			"update_after_epoch": false
+		},
+		"test_generator": {
+			"repetitions": [3],
+			"batch_size": 1,
+			"sample_weight": false,
+			"dim": [52,16,3],
+			"window_size": 52,
+			"window_step": 52,
+			"partb_zero":true,
+			"zero_column":0,
+			"partb_noise":false,
+			"noise_column":0,
+			"min_max_norm":true,
+			"shuffle": false,
+			"update_after_epoch": false
+		}
+	},
+
+	"model": {
+		"name": "VGG16_NinaProDB5",
+		"save": true,
+		"save_file": "DB5_vgg16_b1",
+		"extra": {
+			"dropout_rate":0.6
+			"dense1":256,
+			"dense2":128,
+			"batch_norm": true
+		}
+	},
+
+	"training": {
+		"optimizer": "SGD",
+		"fine_tuning_epochs":5,
+		"fine_tuning_lrate":0.0001,
+		"training_epochs":30,
+		"training_lrate":0.01
+	},
+
+	"logging": {
+		"enable": true,
+		"log_file": "DB5_vgg16_b1"
+	}
+
+	
+}

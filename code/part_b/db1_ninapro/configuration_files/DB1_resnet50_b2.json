@@ -1,0 +1,69 @@
+{
+	"dataset": {
+		"name": "DB1",
+		"train_generator": {
+			"repetitions": [1, 3, 4, 6, 8, 10],
+			"batch_size":1024,
+			"sample_weight": true,
+			"dim": [15,10,3],
+			"window_size": 15,
+			"window_step": 5,
+			"min_max_norm":true,
+			"snr_db":25,			
+			"rotation":2,
+			"size_factor":2,				
+			"shuffle": true
+		},
+		"valid_generator": {
+			"repetitions": [2, 5, 9],
+			"batch_size": 1,
+			"sample_weight": false,
+			"dim": [15,10,3],
+			"window_size": 15,
+			"window_step": 15,
+			"shuffle": false,
+			"update_after_epoch": false
+		},
+		"test_generator": {
+			"repetitions": [7],
+			"batch_size": 1,
+			"sample_weight": false,
+			"dim": [15,10,3],
+			"window_size": 15,
+			"window_step": 15,
+			"partb_zero":false,
+			"zero_column":0,
+			"partb_noise":true,
+			"noise_column":0,
+			"shuffle": false,
+			"update_after_epoch": false
+		}
+	},
+
+	"model": {
+		"name": "Resmet50_NinaPro",
+		"save": true,
+		"save_file": "DB1_resnet50_b2",
+		"extra": {
+			"dropout_rate": 0.45,
+			"dense1":1024,
+			"dense2":512,
+			"dense3":128,
+			"batch_norm": true
+	},
+
+	"training": {
+		"optimizer": "SGD",
+		"fine_tuning_epochs": 15,
+		"fine_tuning_lrate": 0.0001,
+		"training_epochs":35,
+		"training_lrate":0.001
+	},
+
+	"logging": {
+		"enable": true,
+		"log_file": "DB1_resnet50_b2"
+	}
+
+	
+}
